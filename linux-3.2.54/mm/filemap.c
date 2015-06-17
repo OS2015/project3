@@ -1661,7 +1661,7 @@ int filemap_fault(struct vm_area_struct *vma, struct vm_fault *vmf)
 	 * Do we have something in the page cache already?
 	 */
 	page = find_get_page(mapping, offset);
-	printk(KERN_CRIT, “%s, %X\n”, current->comm, vmf->virtual_address);
+	// printk(KERN_CRIT "%s, %X\n", current->comm, vmf->virtual_address);
 	if (likely(page)) {
 		/*
 		 * We found the page, so try async readahead before
@@ -1679,7 +1679,7 @@ retry_find:
 		if (!page)
 			goto no_cached_page;
 	}
-	printk(KERN_CRIT, “%s, %X\n”, current->comm, vmf->virtual_address);
+	printk(KERN_CRIT "%s, %X\n", current->comm, vmf->virtual_address);
 
 	if (!lock_page_or_retry(page, vma->vm_mm, vmf->flags)) {
 		page_cache_release(page);
